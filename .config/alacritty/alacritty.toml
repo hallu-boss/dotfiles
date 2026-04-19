@@ -1,0 +1,11 @@
+[general]
+import = [
+    "~/.config/alacritty/meliora.toml"
+]
+
+[font]
+size = 18.0
+
+[font.normal]
+family = "RecMonoCasual Nerd Font"
+style = "Regular"
