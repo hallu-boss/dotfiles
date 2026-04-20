@@ -91,6 +91,7 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias nv='nvim'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -117,11 +118,9 @@ if ! shopt -oq posix; then
 fi
 . "$HOME/.cargo/env"
 
-eval "$(fzf --bash)"
-
 PS1='\[\033[01;34m\]\w\[\033[00m\]\$ '
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-export EDITOR="hx"
+export EDITOR="nvim"
