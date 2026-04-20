@@ -14,21 +14,24 @@ vim.o.winborder = 'rounded'
 
 vim.pack.add {
   { src = 'https://github.com/neovim/nvim-lspconfig' },
+  { src = 'https://github.com/vague-theme/vague.nvim' },
   { src = 'https://github.com/lewis6991/gitsigns.nvim' },
   { src = 'https://github.com/stevearc/oil.nvim' },
   { src = 'https://github.com/nvim-telescope/telescope.nvim' },
   { src = 'https://github.com/nvim-lua/plenary.nvim' },
 }
 
-vim.cmd('colorscheme habamax')
+vim.cmd.colorscheme('vague')
 
 vim.lsp.enable { 'lua_ls', 'pylsp', 'rust-analyzer' }
 
-require("oil").setup()
+require("oil").setup({
+  columns = { "icon" }
+})
 
 vim.g.mapleader = ' '
-vim.keymap.set('n', '<leader>e',   ':Ex<CR>')
-vim.keymap.set('n', '<leader>E',   ':Ex %:p:h<CR>')
+vim.keymap.set('n', '<leader>e',   ':Oil .<CR>')
+vim.keymap.set('n', '<leader>E',   ':Oil<CR>')
 vim.keymap.set('n', '<leader>f',   ':Telescope find_files<CR>')
 vim.keymap.set('n', '<leader>b',   ':Telescope buffers<CR>')
 vim.keymap.set('n', '<leader>/',   ':Telescope live_grep<CR>')

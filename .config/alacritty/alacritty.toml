@@ -1,11 +1,11 @@
 [general]
 import = [
-    "~/.config/alacritty/meliora.toml"
+    "~/.config/alacritty/vague.toml"
 ]
 
 [font]
 size = 18.0
 
 [font.normal]
-family = "RecMonoCasual Nerd Font"
+family = "BlexMono Nerd Font"
 style = "Regular"
