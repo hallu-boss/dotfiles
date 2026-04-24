@@ -1,46 +1,60 @@
--- INIT.LUA
-vim.o.number = true
-vim.o.list = true
-vim.o.expandtab = true
-vim.o.incsearch = true
-vim.o.ignorecase = true
-vim.o.smartcase = true
-vim.o.undofile = true
+vim.o.termguicolors = true
+vim.o.nu = true
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
-vim.o.signcolumn = 'yes'
-vim.o.winborder = 'rounded'
+vim.o.expandtab = true
+vim.o.ignorecase = true
+vim.o.list = true
+vim.o.signcolumn = "yes"
+vim.o.winborder = "rounded"
+vim.o.path = "**/*"
 
+function GitBranch()
+  local handle = io.popen("git branch --show-current 2>/dev/null")
+  if handle then
+    local result = handle:read("*l")
+    handle:close()
+    if result ~= nil and result ~= "" then
+      return " " .. result
+    end
+  end
+  return ""
+end
 
-vim.pack.add {
-  { src = 'https://github.com/neovim/nvim-lspconfig' },
-  { src = 'https://github.com/vague-theme/vague.nvim' },
-  { src = 'https://github.com/lewis6991/gitsigns.nvim' },
-  { src = 'https://github.com/stevearc/oil.nvim' },
-  { src = 'https://github.com/nvim-telescope/telescope.nvim' },
-  { src = 'https://github.com/nvim-lua/plenary.nvim' },
-}
+vim.o.statusline = "%<%f %h%w%m%r%{v:lua.GitBranch()}%=%-14.(%l,%c%V%) %P"
 
-vim.cmd.colorscheme('vague')
-
-vim.lsp.enable { 'lua_ls', 'pylsp', 'rust-analyzer' }
-
-require("oil").setup({
-  columns = { "icon" }
+vim.pack.add({
+  { src = "https://github.com/vague2k/vague.nvim" },
+  { src = "https://github.com/nvim-mini/mini.nvim" },
 })
 
-vim.g.mapleader = ' '
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>')
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>')
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>')
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>')
+require('vague').setup({
+  on_highlights = function(hl, colors)
+    hl.MiniPickNormal  = { bg = colors.bg }
+    hl.MiniPickBorder  = { bg = colors.bg }
+    hl.MiniFilesNormal = { bg = colors.bg }
+    hl.MiniFilesBorder = { bg = colors.bg }
+  end,
+})
 
+require("mini.pick").setup()
+require("mini.files").setup()
+require("mini.git").setup()
 
-vim.keymap.set('n', '<leader>e',   ':Oil .<CR>')
-vim.keymap.set('n', '<leader>E',   ':Oil<CR>')
-vim.keymap.set('n', '<leader>f',   ':Telescope find_files<CR>')
-vim.keymap.set('n', '<leader>b',   ':Telescope buffers<CR>')
-vim.keymap.set('n', '<leader>/',   ':Telescope live_grep<CR>')
-vim.keymap.set('n', '<leader>g',   ':Telescope git_branches<CR>')
-vim.keymap.set('n', '<leader>?',   ':Telescope keymaps<CR>')
-vim.keymap.set('n', '<leader>\'',  ':Telescope resume<CR>')
+vim.cmd.colorscheme("vague")
+
+vim.g.mapleader = " "
+
+vim.keymap.set("n", "<leader>f", ":Pick files<CR>")
+vim.keymap.set("n", "<leader>b", ":Pick buffers<CR>")
+vim.keymap.set("n", "<leader>/", ":Pick grep_live<CR>")
+vim.keymap.set("n", "<leader>?", ":Pick help<CR>")
+vim.keymap.set("n", "<leader>'", ":Pick resume<CR>")
+
+local files = require "mini.files"
+vim.keymap.set("n", "<leader>e", files.open)
+
+vim.keymap.set({ "n", "x" }, "<leader>y", "\"+y")
+
+vim.keymap.set("n", "<leader>t", ":below term<CR>i")
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
