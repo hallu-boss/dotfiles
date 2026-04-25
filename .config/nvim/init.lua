@@ -26,6 +26,8 @@ vim.pack.add({
  	{ src = "https://github.com/mason-org/mason.nvim" },
 })
 
+require("mini.ai").setup()
+require("mini.surround").setup()
 require("mini.pick").setup()
 require("mini.files").setup()
 require("mini.git").setup()
@@ -45,6 +47,9 @@ vim.cmd.colorscheme("vague")
 
 vim.g.mapleader = " "
 
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+
 vim.keymap.set("n", "<leader>f", ":Pick files<CR>")
 vim.keymap.set("n", "<leader>b", ":Pick buffers<CR>")
 vim.keymap.set("n", "<leader>/", ":Pick grep_live<CR>")
@@ -57,7 +62,7 @@ vim.keymap.set("n", "<leader>go", diff.toggle_overlay)
 vim.keymap.set("n", "<leader>gs", git.show_at_cursor)
 
 local files = require "mini.files"
-vim.keymap.set("n", "<leader>e", files.open)
+vim.keymap.set({ "n", "x" }, "<leader>e", files.open)
 
 vim.keymap.set({ "n", "x" }, "<leader>y", "\"+y")
 
