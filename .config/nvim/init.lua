@@ -28,6 +28,7 @@ vim.pack.add({
 
 require("mini.ai").setup()
 require("mini.surround").setup()
+require('mini.hipatterns').setup()
 require("mini.pick").setup()
 require("mini.files").setup()
 require("mini.git").setup()
@@ -42,6 +43,17 @@ require("mini.diff").setup({
 
 require("mason").setup()
 vim.lsp.enable({ "lua_ls", "ts_ls" })
+
+local hipatterns = require "mini.hipatterns"
+hipatterns.setup({
+  highlighters = {
+    fixme = { pattern = '%f[%w]()FIXME()%f[%W]', group = 'MiniHipatternsFixme' },
+    hack  = { pattern = '%f[%w]()HACK()%f[%W]',  group = 'MiniHipatternsHack'  },
+    todo  = { pattern = '%f[%w]()TODO()%f[%W]',  group = 'MiniHipatternsTodo'  },
+    note  = { pattern = '%f[%w]()NOTE()%f[%W]',  group = 'MiniHipatternsNote'  },
+    hex_color = hipatterns.gen_highlighter.hex_color(),
+  },
+})
 
 vim.cmd.colorscheme("vague")
 
