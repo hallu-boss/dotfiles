@@ -30,6 +30,7 @@ require("mini.pick").setup()
 require("mini.files").setup()
 require("mini.git").setup()
 require("mini.completion").setup()
+require("mini.cmdline").setup()
 require("mini.diff").setup({
   view = {
     style = 'sign',
@@ -51,7 +52,9 @@ vim.keymap.set("n", "<leader>?", ":Pick help<CR>")
 vim.keymap.set("n", "<leader>'", ":Pick resume<CR>")
 
 local diff = require "mini.diff"
+local git = require "mini.git"
 vim.keymap.set("n", "<leader>go", diff.toggle_overlay)
+vim.keymap.set("n", "<leader>gs", git.show_at_cursor)
 
 local files = require "mini.files"
 vim.keymap.set("n", "<leader>e", files.open)
