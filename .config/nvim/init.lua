@@ -8,6 +8,7 @@ vim.o.list = true
 vim.o.signcolumn = "yes"
 vim.o.winborder = "rounded"
 vim.o.path = "**/*"
+vim.diagnostic.config({ virtual_text = true })
 
 function GitBranch()
   local handle = io.popen("git branch --show-current 2>/dev/null")
@@ -21,6 +22,8 @@ vim.o.statusline = "%<%f %h%w%m%r%{v:lua.GitBranch()}%=%-14.(%l,%c%V%) %P"
 vim.pack.add({
   { src = "https://github.com/vague2k/vague.nvim" },
   { src = "https://github.com/nvim-mini/mini.nvim" },
+  { src = "https://github.com/neovim/nvim-lspconfig" },
+ 	{ src = "https://github.com/mason-org/mason.nvim" },
 })
 
 require('vague').setup({
@@ -41,6 +44,9 @@ require("mini.diff").setup({
     signs = { add = '+', change = '~', delete = '-' },
   },
 })
+
+require("mason").setup()
+vim.lsp.enable({ "lua_ls" })
 
 vim.cmd.colorscheme("vague")
 
