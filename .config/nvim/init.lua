@@ -28,6 +28,7 @@ vim.pack.add({
 
 require("mini.ai").setup()
 require("mini.surround").setup()
+require("mini.notify").setup()
 require('mini.hipatterns').setup()
 require("mini.pick").setup()
 require("mini.files").setup()
