@@ -28,10 +28,9 @@ vim.pack.add({
 
 require('vague').setup({
   on_highlights = function(hl, colors)
-    hl.MiniPickNormal  = { bg = colors.bg }
-    hl.MiniPickBorder  = { bg = colors.bg }
-    hl.MiniFilesNormal = { bg = colors.bg }
-    hl.MiniFilesBorder = { bg = colors.bg }
+    for _, g in ipairs({ "MiniPickNormal", "MiniPickBorder", "MiniFilesNormal", "MiniFilesBorder", }) do
+      hl[g] = { bg = colors.bg }
+    end
   end,
 })
 
