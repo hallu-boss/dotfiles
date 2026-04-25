@@ -49,7 +49,9 @@ vim.keymap.set("n", "<leader>b", ":Pick buffers<CR>")
 vim.keymap.set("n", "<leader>/", ":Pick grep_live<CR>")
 vim.keymap.set("n", "<leader>?", ":Pick help<CR>")
 vim.keymap.set("n", "<leader>'", ":Pick resume<CR>")
-vim.keymap.set("n", "<leader>g", ":Git ")
+
+local diff = require "mini.diff"
+vim.keymap.set("n", "<leader>go", diff.toggle_overlay)
 
 local files = require "mini.files"
 vim.keymap.set("n", "<leader>e", files.open)
