@@ -11,14 +11,9 @@ vim.o.path = "**/*"
 
 function GitBranch()
   local handle = io.popen("git branch --show-current 2>/dev/null")
-  if handle then
-    local result = handle:read("*l")
-    handle:close()
-    if result ~= nil and result ~= "" then
-      return " " .. result
-    end
-  end
-  return ""
+  local result = handle and handle:read("*l") or nil
+  if handle then handle:close() end
+  return (result and result ~= "") and (" " ..result) or ""
 end
 
 vim.o.statusline = "%<%f %h%w%m%r%{v:lua.GitBranch()}%=%-14.(%l,%c%V%) %P"
@@ -40,6 +35,12 @@ require('vague').setup({
 require("mini.pick").setup()
 require("mini.files").setup()
 require("mini.git").setup()
+require("mini.diff").setup({
+  view = {
+    style = 'sign',
+    signs = { add = '+', change = '~', delete = '-' },
+  },
+})
 
 vim.cmd.colorscheme("vague")
 
@@ -50,6 +51,7 @@ vim.keymap.set("n", "<leader>b", ":Pick buffers<CR>")
 vim.keymap.set("n", "<leader>/", ":Pick grep_live<CR>")
 vim.keymap.set("n", "<leader>?", ":Pick help<CR>")
 vim.keymap.set("n", "<leader>'", ":Pick resume<CR>")
+vim.keymap.set("n", "<leader>g", ":Git ")
 
 local files = require "mini.files"
 vim.keymap.set("n", "<leader>e", files.open)
