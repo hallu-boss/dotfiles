@@ -38,7 +38,7 @@ require("mini.diff").setup({
 })
 
 require("mason").setup()
-vim.lsp.enable({ "lua_ls" })
+vim.lsp.enable({ "lua_ls", "ts_ls" })
 
 vim.cmd.colorscheme("vague")
 
