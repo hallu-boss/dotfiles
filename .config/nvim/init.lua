@@ -26,17 +26,18 @@ vim.pack.add({
  	{ src = "https://github.com/mason-org/mason.nvim" },
 })
 
-require('vague').setup({
-  on_highlights = function(hl, colors)
-    for _, g in ipairs({ "MiniPickNormal", "MiniPickBorder", "MiniFilesNormal", "MiniFilesBorder", }) do
-      hl[g] = { bg = colors.bg }
-    end
-  end,
-})
+-- require('vague').setup({
+--   on_highlights = function(hl, colors)
+--     for _, g in ipairs({ "MiniPickNormal", "MiniPickBorder", "MiniFilesNormal", "MiniFilesBorder", }) do
+--       hl[g] = { bg = colors.bg }
+--     end
+--   end,
+-- })
 
 require("mini.pick").setup()
 require("mini.files").setup()
 require("mini.git").setup()
+require("mini.completion").setup()
 require("mini.diff").setup({
   view = {
     style = 'sign',
