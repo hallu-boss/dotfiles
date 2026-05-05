@@ -23,7 +23,7 @@ vim.pack.add({
   { src = "https://github.com/vague2k/vague.nvim" },
   { src = "https://github.com/nvim-mini/mini.nvim" },
   { src = "https://github.com/neovim/nvim-lspconfig" },
- 	{ src = "https://github.com/mason-org/mason.nvim" },
+  { src = "https://github.com/mason-org/mason.nvim" },
 })
 
 require("mini.ai").setup()
@@ -39,6 +39,31 @@ require("mini.diff").setup({
   view = {
     style = 'sign',
     signs = { add = '+', change = '~', delete = '-' },
+  },
+})
+local miniclue = require('mini.clue')
+miniclue.setup({
+  triggers = {
+    { mode = { 'n', 'x' }, keys = '<Leader>' },
+    { mode = 'n', keys = '[' },
+    { mode = 'n', keys = ']' },
+    { mode = 'i', keys = '<C-x>' },
+    { mode = { 'n', 'x' }, keys = 'g' },
+    { mode = { 'n', 'x' }, keys = "'" },
+    { mode = { 'n', 'x' }, keys = '`' },
+    { mode = { 'n', 'x' }, keys = '"' },
+    { mode = { 'i', 'c' }, keys = '<C-r>' },
+    { mode = 'n', keys = '<C-w>' },
+    { mode = { 'n', 'x' }, keys = 'z' },
+  },
+  clues = {
+    miniclue.gen_clues.square_brackets(),
+    miniclue.gen_clues.builtin_completion(),
+    miniclue.gen_clues.g(),
+    miniclue.gen_clues.marks(),
+    miniclue.gen_clues.registers(),
+    miniclue.gen_clues.windows(),
+    miniclue.gen_clues.z(),
   },
 })
 
@@ -63,21 +88,25 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
-vim.keymap.set("n", "<leader>f", ":Pick files<CR>")
-vim.keymap.set("n", "<leader>b", ":Pick buffers<CR>")
-vim.keymap.set("n", "<leader>/", ":Pick grep_live<CR>")
-vim.keymap.set("n", "<leader>?", ":Pick help<CR>")
-vim.keymap.set("n", "<leader>'", ":Pick resume<CR>")
+local notify = require "mini.notify"
+vim.keymap.set("n", "<leader>nh", notify.show_history, { desc = "Show notify history" })
+
+vim.keymap.set("n", "<leader>f", ":Pick files<CR>", { desc = "Search files" })
+vim.keymap.set("n", "<leader>b", ":Pick buffers<CR>", { desc = "Search buffers" })
+vim.keymap.set("n", "<leader>/", ":Pick grep_live<CR>", { desc = "Search live grep" })
+vim.keymap.set("n", "<leader>?", ":Pick help<CR>", { desc = "Search help" })
+vim.keymap.set("n", "<leader>'", ":Pick resume<CR>", { desc = "Resume last search" })
 
 local diff = require "mini.diff"
 local git = require "mini.git"
-vim.keymap.set("n", "<leader>go", diff.toggle_overlay)
-vim.keymap.set("n", "<leader>gs", git.show_at_cursor)
+vim.keymap.set("n", "<leader>go", diff.toggle_overlay, { desc = "Git toggle overlay" })
+vim.keymap.set("n", "<leader>gs", git.show_at_cursor, { desc = "Git show at cursor"})
 
 local files = require "mini.files"
-vim.keymap.set({ "n", "x" }, "<leader>e", files.open)
+vim.keymap.set("n", "<leader>e", function() files.open(vim.api.nvim_buf_get_name(0)) end, { desc = "Explore" })
+vim.keymap.set("n", "<leader>E", files.open, { desc = "Explore project dir" })
 
-vim.keymap.set({ "n", "x" }, "<leader>y", "\"+y")
+vim.keymap.set({ "n", "x" }, "<leader>y", "\"+y", { desc = "Yeank to clipboard" })
 
-vim.keymap.set("n", "<leader>t", ":below term<CR>i")
+vim.keymap.set("n", "<leader>t", ":below term<CR>i", { desc = "Open terminal" })
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
