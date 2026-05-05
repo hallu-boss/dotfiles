@@ -1,1 +1,3 @@
 theme = Vague
+
+gtk-titlebar-style = tabs
