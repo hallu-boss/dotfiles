@@ -118,4 +118,4 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export EDITOR='nvim'
+export EDITOR='hx'

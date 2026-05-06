@@ -108,5 +108,27 @@ vim.keymap.set("n", "<leader>E", files.open, { desc = "Explore project dir" })
 
 vim.keymap.set({ "n", "x" }, "<leader>y", "\"+y", { desc = "Yeank to clipboard" })
 
-vim.keymap.set("n", "<leader>t", ":below term<CR>i", { desc = "Open terminal" })
-vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
+vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>")
+
+local terminal_buf, terminal_win
+function ToggleTerminal()
+  if terminal_win and vim.api.nvim_win_is_valid(terminal_win) then
+    vim.api.nvim_win_close(terminal_win, true)
+    terminal_win = nil
+    return
+  end
+
+  vim.cmd("belowright 15split")
+  terminal_win = vim.api.nvim_get_current_win()
+
+  if not terminal_buf or not vim.api.nvim_buf_is_valid(terminal_buf) then
+    vim.cmd("terminal")
+    terminal_buf = vim.api.nvim_get_current_buf()
+  else
+    vim.api.nvim_win_set_buf(terminal_win, terminal_buf)
+  end
+
+  vim.cmd("startinsert")
+end
+
+vim.keymap.set({ "n", "t" }, "<M-t>", ToggleTerminal)
