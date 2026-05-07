@@ -119,6 +119,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export EDITOR='hx'
+export EDITOR='nvim'
 
 eval "$(zoxide init bash)"
