@@ -93,6 +93,7 @@ alias la='ls -A'
 alias l='ls -CF'
 
 alias nv='nvim'
+alias cd='z'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -119,3 +120,5 @@ if ! shopt -oq posix; then
 fi
 
 export EDITOR='hx'
+
+eval "$(zoxide init bash)"
