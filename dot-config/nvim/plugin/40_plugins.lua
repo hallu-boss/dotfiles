@@ -174,3 +174,8 @@ end)
 --   -- Enable only one
 --   vim.cmd('color everforest')
 -- end)
+
+now_if_args(function()
+  add({ 'https://github.com/NeogitOrg/neogit' })
+  require('neogit').setup()
+end)
