@@ -174,9 +174,3 @@ end)
 --   -- Enable only one
 --   vim.cmd('color everforest')
 -- end)
-
-now_if_args(function()
-  add({ 'https://github.com/kdheepak/lazygit.nvim' })
-  add({ 'https://github.com/nvim-lua/plenary.nvim' })
-  require('lazygit').setup()
-end)
