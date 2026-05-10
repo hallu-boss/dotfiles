@@ -1,0 +1,67 @@
+# ~/.config/alacritty/alacritty.toml
+
+[colors.primary]
+background = "#11262d"
+foreground = "#d8d4cd"
+
+[colors.cursor]
+text = "#11262d"
+cursor = "#b3daf9"
+
+[colors.selection]
+text = "#f4f0e9"
+background = "#2c4249"
+
+[colors.normal]
+black   = "#051a20"
+red     = "#fac5c7"
+green   = "#b8e1c1"
+yellow  = "#d9d8aa"
+blue    = "#d1cffb"
+magenta = "#edc7e7"
+cyan    = "#a6e1e2"
+white   = "#d8d4cd"
+
+[colors.bright]
+black   = "#485f67"
+red     = "#fac5c7"
+green   = "#b8e1c1"
+yellow  = "#d9d8aa"
+blue    = "#b3daf9"
+magenta = "#edc7e7"
+cyan    = "#a6e1e2"
+white   = "#f4f0e9"
+
+[colors.dim]
+black   = "#000f15"
+red     = "#410d14"
+green   = "#003415"
+yellow  = "#3a3800"
+blue    = "#211a46"
+magenta = "#371134"
+cyan    = "#004c4e"
+white   = "#98948e"
+
+[colors.search.matches]
+foreground = "#11262d"
+background = "#d9d8aa"
+
+[colors.search.focused_match]
+foreground = "#11262d"
+background = "#b3daf9"
+
+[colors.hints.start]
+foreground = "#11262d"
+background = "#f2ccad"
+
+[colors.hints.end]
+foreground = "#d8d4cd"
+background = "#2c4249"
+
+[colors.footer_bar]
+foreground = "#d8d4cd"
+background = "#051a20"
+
+[colors.line_indicator]
+foreground = "None"
+background = "None"

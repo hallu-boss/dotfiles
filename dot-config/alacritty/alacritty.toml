@@ -1,4 +1,4 @@
-general.import = ["~/.config/alacritty/tokyo-night.toml"]
+general.import = ["~/.config/alacritty/miniwinter.toml"]
 
 [font]
 normal.family = "FiraCode Nerd Font"
