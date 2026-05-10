@@ -1,4 +1,5 @@
 {
   "local": { "prefix": "l", "body": "local $1 = $0" },
-  "Remove prefixes": { "prefix": ["lfu", "ll", "lpca"] }
+  "Remove prefixes": { "prefix": ["lfu", "ll", "lpca"] },
+  "shebang": { "prefix": "shebang", "body": "#!/bin/env bash" }
 }
