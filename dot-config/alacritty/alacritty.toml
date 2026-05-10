@@ -9,5 +9,6 @@ size = 14
 
 [keyboard]
 bindings = [
-  { key = "N", mods = "Control|Shift", action = "CreateNewWindow" }
+  { key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
+  { key = "F11", action = "ToggleFullscreen" }
 ]
