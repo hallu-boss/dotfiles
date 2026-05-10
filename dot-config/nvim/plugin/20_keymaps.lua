@@ -248,4 +248,7 @@ nmap_leader('vl', '<Cmd>lua MiniVisits.add_label()<CR>',          'Add label')
 nmap_leader('vL', '<Cmd>lua MiniVisits.remove_label()<CR>',       'Remove label')
 
 vim.keymap.set("t", "<esc><esc>", "<C-\\><c-n>")
+
+vim.keymap.set("n", "H", ":bp<CR>")
+vim.keymap.set("n", "L", ":bn<CR>")
 -- stylua: ignore end
