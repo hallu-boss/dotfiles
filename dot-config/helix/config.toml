@@ -13,5 +13,6 @@ C-y = [
 ]
 C-g = [
   ':insert-output lazygit',
-  ':redraw'
+  ':redraw',
+  ':reload-all'
 ]
