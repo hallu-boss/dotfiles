@@ -3,6 +3,9 @@ theme = "catppuccin_mocha"
 [editor.statusline]
 right = ["version-control", "separator", "diagnostics", "selections", "register", "position", "file-encoding"]
 
+[editor.auto-save.after-delay]
+enable = true
+
 [keys.normal]
 C-y = [
   ':sh rm -f /tmp/unique-file',
